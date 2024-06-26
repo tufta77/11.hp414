@@ -1,0 +1,30 @@
+.github/workflows/
+name: Run Steam and Banana Clicker
+
+on: [push]
+
+jobs:
+  run-steam:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt update
+        sudo apt install -y steamcmd lib32gcc1
+        wget -qO- https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar xvz
+        ./steamcmd.sh +login anonymous +quit
+
+    - name: Download and run Banana Clicker
+      run: |
+        # Скачиваем Banana Clicker
+        wget https://example.com/path/to/banana_clicker -O banana_clicker
+        chmod +x banana_clicker
+        
+        # Запускаем Steam и Banana Clicker
+        ./steamcmd.sh +login anonymous +quit
+        ./banana_clicker
