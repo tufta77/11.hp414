@@ -1,4 +1,3 @@
-.github/workflows/
 name: Run Steam and Banana Clicker
 
 on: [push]
